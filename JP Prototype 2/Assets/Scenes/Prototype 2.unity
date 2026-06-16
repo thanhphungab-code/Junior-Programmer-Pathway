@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 45058797}
   - component: {fileID: 45058798}
+  - component: {fileID: 45058799}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -169,6 +170,21 @@ MonoBehaviour:
   - {fileID: 1288883072297340972, guid: aaa740f61590bce44ad25b34bffe6a61, type: 3}
   spawnRangeX: 15
   spawnPosZ: 20
+--- !u!114 &45058799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45058796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c0e1f24e2ce4a5b9bf1f3a7499cd45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 6512321886054771318, guid: 0016d3753426aab44baaf124daaa7227, type: 3}
+  amountToPool: 20
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,119 +689,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 604618157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 524efd29f4988e14898590ed4206c51f, type: 3}
+  m_Script: {fileID: 11500000, guid: 38e917c52987daa41af6a0305d9813c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6ad1da51-636c-49c6-8925-5b19cedc3a3c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: 34cc3322-64af-450b-8736-6d15eef12af8
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 4
-    - m_Name: up
-      m_Id: 1c98e310-5e6b-465b-86e8-6a1adbca95e6
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 9833aecb-383c-4d65-bacc-04c225f35754
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: left
-      m_Id: b2048ab2-b7fe-49f3-adaa-6545b969c4ee
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: right
-      m_Id: 381628af-0812-40b5-9bdf-4bd30cfcd12d
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: 2D Vector
-      m_Id: d27c3f20-8bc2-4e02-9a3a-b39057d29a88
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 4
-    - m_Name: up
-      m_Id: a2da9576-33c9-4dbe-b48d-677b21c1447d
-      m_Path: <Keyboard>/upArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: down
-      m_Id: b9670d6a-b519-4739-b07a-02c141fdfc79
-      m_Path: <Keyboard>/downArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: left
-      m_Id: a9d78ca4-5db1-4c62-9cde-b57561178abd
-      m_Path: <Keyboard>/leftArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: right
-      m_Id: 2f5beda1-5f11-4b2d-a46b-32fa0943cb4c
-      m_Path: <Keyboard>/rightArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    m_Flags: 0
-  moveInput: {x: 0, y: 0}
-  speed: 15
-  xRange: 15
   projectilePrefab: {fileID: 6512321886054771318, guid: 0016d3753426aab44baaf124daaa7227, type: 3}
-  fireAction:
-    m_Name: Fire
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 3ad0a62a-9924-49c6-a5d1-3d396d76b3a8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 998b4f23-e219-427d-aef2-c53b04f8c424
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire
-      m_Flags: 0
-    m_Flags: 0
 --- !u!1 &992285705
 GameObject:
   m_ObjectHideFlags: 0
