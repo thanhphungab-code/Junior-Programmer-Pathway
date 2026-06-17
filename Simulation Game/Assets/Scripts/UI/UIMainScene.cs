@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 public class UIMainScene : MonoBehaviour
 {
     public static UIMainScene Instance { get; private set; }
-    
+
     public interface IUIInfoContent
     {
         string GetName();
         string GetData();
         void GetContent(ref List<Building.InventoryEntry> content);
     }
-    
+
     public InfoPopup InfoPopup;
     public ResourceDatabase ResourceDB;
 
@@ -38,24 +38,24 @@ public class UIMainScene : MonoBehaviour
     {
         if (m_CurrentContent == null)
             return;
-        
+
         //This is not the most efficient, as we reconstruct everything every time. A more efficient way would check if
         //there was some change since last time (could be made through a IsDirty function in the interface) or smarter
         //update (match an entry content ta type and just update the count) but simplicity in this tutorial we do that
         //every time, this won't be a bottleneck here. 
 
         InfoPopup.Data.text = m_CurrentContent.GetData();
-        
+
         InfoPopup.ClearContent();
         m_ContentBuffer.Clear();
-        
+
         m_CurrentContent.GetContent(ref m_ContentBuffer);
         foreach (var entry in m_ContentBuffer)
         {
             Sprite icon = null;
             if (ResourceDB != null)
                 icon = ResourceDB.GetItem(entry.ResourceId)?.Icone;
-            
+
             InfoPopup.AddToContent(entry.Count, icon);
         }
     }
@@ -73,4 +73,10 @@ public class UIMainScene : MonoBehaviour
             InfoPopup.Name.text = content.GetName();
         }
     }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }
