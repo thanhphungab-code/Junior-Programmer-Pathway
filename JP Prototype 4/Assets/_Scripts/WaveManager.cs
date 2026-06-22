@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,11 +6,8 @@ namespace JpPrototype4
 {
     public class WaveManager : MonoBehaviour
     {
-        [Tooltip("Enemy prefabs to randomly draw from each wave. Each must have EnemyBall and PooledObject components.")]
-        [SerializeField] private GameObject[] _enemyPrefabs;
-
-        [Tooltip("Powerup prefab spawned once per wave.")]
-        [SerializeField] private GameObject _powerupPrefab;
+        [Tooltip("Wave configs in order. Each entry defines enemies and powerups for that wave.")]
+        [SerializeField] private WaveConfig[] _waves;
 
         [Tooltip("Half-extents of the rectangular spawn area on X/Z.")]
         [SerializeField] private float _spawnRange = 9f;
@@ -17,9 +15,13 @@ namespace JpPrototype4
         [Tooltip("Delay in seconds between waves.")]
         [SerializeField] private float _waveCooldown = 2f;
 
-        private int _waveNumber = 1;
+        // Raised when all waves are completed - wire up to GameManager/UI later.
+        public event Action OnAllWavesCompleted;
+
+        private int _currentWaveIndex;
         private int _activeEnemyCount;
         private bool _isWaveActive;
+        private bool _allWavesCompleted;
 
         private void Start()
         {
@@ -28,9 +30,16 @@ namespace JpPrototype4
 
         private void Update()
         {
-            if (!_isWaveActive && _activeEnemyCount <= 0)
+            if (_allWavesCompleted || _isWaveActive || _activeEnemyCount > 0) return;
+
+            if (_currentWaveIndex < _waves.Length)
             {
                 StartCoroutine(StartNextWave());
+            }
+            else
+            {
+                _allWavesCompleted = true;
+                OnAllWavesCompleted?.Invoke();
             }
         }
 
@@ -38,44 +47,51 @@ namespace JpPrototype4
         {
             _isWaveActive = true;
 
-            if (_waveNumber > 1)
+            if (_currentWaveIndex > 0)
             {
                 yield return new WaitForSeconds(_waveCooldown);
             }
 
-            SpawnWave(_waveNumber);
-            SpawnPowerup();
-            _waveNumber++;
+            WaveConfig config = _waves[_currentWaveIndex];
+            SpawnEnemies(config);
+            SpawnPowerups(config);
+            _currentWaveIndex++;
 
             _isWaveActive = false;
         }
 
-        private void SpawnWave(int count)
+        private void SpawnEnemies(WaveConfig config)
         {
             int successCount = 0;
 
-            for (int i = 0; i < count; i++)
+            foreach (EnemyEntry entry in config.Enemies)
             {
-                GameObject prefab = _enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)];
-                GameObject instance = PoolManager.Instance.Get(prefab);
-                instance.transform.SetPositionAndRotation(GenerateSpawnPosition(), Quaternion.identity);
-
-                if (instance.TryGetComponent(out EnemyBall enemyBall))
+                for (int i = 0; i < entry.Count; i++)
                 {
-                    enemyBall.OnReturnedToPool += HandleEnemyReturned;
-                    successCount++;
+                    GameObject instance = PoolManager.Instance.Get(entry.Prefab);
+                    instance.transform.SetPositionAndRotation(GenerateSpawnPosition(), Quaternion.identity);
+
+                    if (instance.TryGetComponent(out EnemyBall enemyBall))
+                    {
+                        enemyBall.OnReturnedToPool += HandleEnemyReturned;
+                        successCount++;
+                    }
                 }
             }
 
             _activeEnemyCount = successCount;
         }
 
-        private void SpawnPowerup()
+        private void SpawnPowerups(WaveConfig config)
         {
-            if (_powerupPrefab == null) return;
-
-            GameObject instance = PoolManager.Instance.Get(_powerupPrefab);
-            instance.transform.SetPositionAndRotation(GenerateSpawnPosition(), Quaternion.identity);
+            foreach (PowerupEntry entry in config.Powerups)
+            {
+                for (int i = 0; i < entry.Count; i++)
+                {
+                    GameObject instance = PoolManager.Instance.Get(entry.Prefab);
+                    instance.transform.SetPositionAndRotation(GenerateSpawnPosition(), Quaternion.identity);
+                }
+            }
         }
 
         private void HandleEnemyReturned(EnemyBall source)
@@ -86,8 +102,8 @@ namespace JpPrototype4
 
         private Vector3 GenerateSpawnPosition()
         {
-            float x = Random.Range(-_spawnRange, _spawnRange);
-            float z = Random.Range(-_spawnRange, _spawnRange);
+            float x = UnityEngine.Random.Range(-_spawnRange, _spawnRange);
+            float z = UnityEngine.Random.Range(-_spawnRange, _spawnRange);
             return new Vector3(x, 0f, z);
         }
     }
