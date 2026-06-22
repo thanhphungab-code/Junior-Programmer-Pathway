@@ -9,8 +9,10 @@ namespace JpPrototype4
         [Tooltip("Wave configs in order. Each entry defines enemies and powerups for that wave.")]
         [SerializeField] private WaveConfig[] _waves;
 
-        [Tooltip("Half-extents of the rectangular spawn area on X/Z.")]
-        [SerializeField] private float _spawnRange = 9f;
+        [Tooltip("Half-extents of the rectangular spawn area on X.")]
+        [SerializeField] private Vector2 _spawnRangeX = Vector2.one;
+        [Tooltip("Half-extents of the rectangular spawn area on Z.")]
+        [SerializeField] private Vector2 _spawnRangeZ = Vector2.one;
 
         [Tooltip("Delay in seconds between waves.")]
         [SerializeField] private float _waveCooldown = 2f;
@@ -102,8 +104,8 @@ namespace JpPrototype4
 
         private Vector3 GenerateSpawnPosition()
         {
-            float x = UnityEngine.Random.Range(-_spawnRange, _spawnRange);
-            float z = UnityEngine.Random.Range(-_spawnRange, _spawnRange);
+            float x = UnityEngine.Random.Range(_spawnRangeX.x, _spawnRangeX.y);
+            float z = UnityEngine.Random.Range(_spawnRangeZ.x, _spawnRangeZ.y);
             return new Vector3(x, 0f, z);
         }
     }

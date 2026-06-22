@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Wave 2
   m_EditorClassIdentifier: 
   Enemies:
-  - Prefab: {fileID: 3693389670971085198, guid: 24fb3c52c9d7b4b42b5a60697c01666c, type: 3}
+  - Prefab: {fileID: 3500400775775671991, guid: d7438afe63833814d81c445cab46362c, type: 3}
     Count: 2
-  - Prefab: {fileID: 3693389670971085198, guid: 4d5f14ab1f2705d4cb77fc79ccc3f46f, type: 3}
+  - Prefab: {fileID: 7281418520582050054, guid: a44c61ac4f3cbb042862b14956a96583, type: 3}
     Count: 1
   Powerups:
   - Prefab: {fileID: 4934162649575224365, guid: 69da518ee3f92514f9606d3a2be9aa5d, type: 3}

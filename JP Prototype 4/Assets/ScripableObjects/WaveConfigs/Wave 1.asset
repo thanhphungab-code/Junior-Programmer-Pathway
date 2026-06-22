@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wave 1
   m_EditorClassIdentifier: 
   Enemies:
-  - Prefab: {fileID: 3693389670971085198, guid: 24fb3c52c9d7b4b42b5a60697c01666c, type: 3}
+  - Prefab: {fileID: 3500400775775671991, guid: d7438afe63833814d81c445cab46362c, type: 3}
     Count: 2
   Powerups: []
