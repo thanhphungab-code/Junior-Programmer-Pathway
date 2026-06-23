@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f587dcc35275af4409e6adcbbf627832, type: 3}
+  m_Name: Wave 2
+  m_EditorClassIdentifier: 
+  Enemies:
+  - Prefab: {fileID: 3500400775775671991, guid: d7438afe63833814d81c445cab46362c, type: 3}
+    Count: 2
+  - Prefab: {fileID: 7281418520582050054, guid: a44c61ac4f3cbb042862b14956a96583, type: 3}
+    Count: 1
+  Powerups:
+  - Prefab: {fileID: 6486175211836148089, guid: 38c7b519b6b17b248940644e1e5ed2d9, type: 3}
+    Count: 1
+  - Prefab: {fileID: 4934162649575224365, guid: 69da518ee3f92514f9606d3a2be9aa5d, type: 3}
+    Count: 1
+  - Prefab: {fileID: 1570571556489988395, guid: 3bd908e5781b5cc4b8d1574179b67038, type: 3}
+    Count: 1
+  - Prefab: {fileID: 446561327004854599, guid: e0a5bf39805becc43a93ea79ab4e8bbc, type: 3}
+    Count: 1
+  - Prefab: {fileID: 2369047778993662948, guid: 9bdf4e6290b19114896891995665faa4, type: 3}
+    Count: 1
