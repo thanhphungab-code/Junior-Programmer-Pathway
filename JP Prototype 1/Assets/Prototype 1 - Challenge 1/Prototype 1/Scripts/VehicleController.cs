@@ -91,9 +91,16 @@ public class VehicleController : MonoBehaviour
     {
         if (Mathf.Abs(gasInput) > 0.05f && currentSpeed < gearMaxSpeeds[3])
         {
-            float targetSpeedMS = gearMaxSpeeds[currentGear - 1] / 3.6f;
-            float requiredAcceleration = targetSpeedMS / gearAccelTimes[currentGear - 1];
-            float finalAcceleration = requiredAcceleration * 2.5f;
+            float minSpeedKMH = (currentGear == 1) ? 0f : gearMaxSpeeds[currentGear - 2];
+            float maxSpeedKMH = gearMaxSpeeds[currentGear - 1];
+
+            float deltaSpeedMS = (maxSpeedKMH - minSpeedKMH) / 3.6f;
+            float requiredAcceleration = deltaSpeedMS / gearAccelTimes[currentGear - 1];
+            float speedProgressInGear = Mathf.InverseLerp(minSpeedKMH, maxSpeedKMH, currentSpeed);
+
+            float torqueCurveMultiplier = Mathf.Lerp(1.3f, 0.3f, speedProgressInGear);
+            float finalAcceleration = requiredAcceleration * torqueCurveMultiplier;
+
             Vector3 forceVector = transform.forward * gasInput * finalAcceleration;
             rb.AddForce(forceVector, ForceMode.Acceleration);
         }
@@ -147,8 +154,7 @@ public class VehicleController : MonoBehaviour
 
     private void HandleGrip()
     {
-        Vector3 forwardVelocity = transform.forward * Vector3.Dot(rb.linearVelocity, transform.forward);
         Vector3 rightVelocity = transform.right * Vector3.Dot(rb.linearVelocity, transform.right);
-        rb.linearVelocity = forwardVelocity + rightVelocity * (1f - tireGrip);
+        rb.linearVelocity -= rightVelocity * tireGrip;
     }
 }
