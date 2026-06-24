@@ -257,6 +257,8 @@ MonoBehaviour:
   - 4
   - 8
   - 15
+  idleDeceleration: 5
+  brakeForce: 20
   driveAction:
     m_Name: Drive
     m_Type: 0
@@ -371,6 +373,24 @@ MonoBehaviour:
       m_Action: Steer
       m_Flags: 8
     m_Flags: 0
+  brakeAction:
+    m_Name: Brake
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 504373d6-b598-4dd0-9229-037663bf0194
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 8ba96ea7-ffdd-4423-9a9d-bfe22ff643ea
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Brake
+      m_Flags: 0
+    m_Flags: 0
+  tireGrip: 0.95
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,6 +1116,10 @@ PrefabInstance:
     - target: {fileID: 1823073071176704752, guid: e7db4011ca7f11c408c1ad18b34ed04d, type: 3}
       propertyPath: m_Name
       value: Road
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823073071176704752, guid: e7db4011ca7f11c408c1ad18b34ed04d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3598181040322394578, guid: e7db4011ca7f11c408c1ad18b34ed04d, type: 3}
       propertyPath: m_Material

@@ -15,13 +15,16 @@ public class VehicleController : MonoBehaviour
 
     [SerializeField] private float[] gearMaxSpeeds = { 50f, 90f, 140f, 180f };
     [SerializeField] private float[] gearAccelTimes = { 3f, 4f, 8f, 15f };
-
+    [SerializeField] private float idleDeceleration = 5f;
+    [SerializeField] private float brakeForce = 20f;
     [Header("Input (New Input System)")]
     [SerializeField] private InputAction driveAction;
     [SerializeField] private InputAction steerAction;
-
+    [SerializeField] private InputAction brakeAction;
+    [Range(0f, 1f)][SerializeField] private float tireGrip = 0.95f;
     private float gasInput;
     private float steerInput;
+    private float brakeInput;
     private Rigidbody rb;
 
     void Start()
@@ -34,26 +37,33 @@ public class VehicleController : MonoBehaviour
     {
         driveAction.Enable();
         steerAction.Enable();
+        brakeAction.Enable();
     }
 
     private void OnDisable()
     {
         driveAction.Disable();
         steerAction.Disable();
+        brakeAction.Disable();
     }
 
     void Update()
     {
         gasInput = driveAction.ReadValue<float>();
         steerInput = steerAction.ReadValue<float>();
+        brakeInput = brakeAction.ReadValue<float>();
     }
 
     void FixedUpdate()
     {
         currentSpeed = rb.linearVelocity.magnitude * 3.6f;
+
         HandleEngine();
         ApplyMotorForce();
+        HandleDeceleration();
         HandleSteering();
+
+        HandleGrip();
     }
     private void HandleEngine()
     {
@@ -94,7 +104,35 @@ public class VehicleController : MonoBehaviour
             rb.AddForce(forceVector, ForceMode.Acceleration);
         }
     }
+    // --- LOGIC GIAI ĐOẠN 4: XỬ LÝ LỰC CẢN VÀ PHANH ---
+    private void HandleDeceleration()
+    {
+        // Chỉ áp dụng lực cản nếu xe đang chạy (tránh làm xe tự giật lùi khi đang đứng yên)
+        if (currentSpeed > 0.1f)
+        {
+            float currentDeceleration = 0f;
 
+            // Ưu tiên 1: Nếu người chơi đang nhấn phanh (Space)
+            if (brakeInput > 0.5f)
+            {
+                currentDeceleration = brakeForce;
+            }
+            // Ưu tiên 2: Nếu không nhấn phanh VÀ nhả ga hoàn toàn -> Áp dụng phanh động cơ
+            else if (Mathf.Abs(gasInput) < 0.05f)
+            {
+                currentDeceleration = idleDeceleration;
+            }
+
+            // Thực thi lực cản
+            if (currentDeceleration > 0f)
+            {
+                // rb.linearVelocity.normalized lấy ra hướng di chuyển (bỏ qua độ lớn)
+                // Thêm dấu âm (-) để lực đẩy ngược lại hướng di chuyển
+                Vector3 decelerationForce = -rb.linearVelocity.normalized * currentDeceleration;
+                rb.AddForce(decelerationForce, ForceMode.Acceleration);
+            }
+        }
+    }
     private void HandleSteering()
     {
         float speedRatio = Mathf.Clamp01(currentSpeed / 180f);
@@ -112,5 +150,18 @@ public class VehicleController : MonoBehaviour
             Quaternion turnRotation = Quaternion.Euler(0f, turnAmount, 0f);
             rb.MoveRotation(rb.rotation * turnRotation);
         }
+    }
+
+    private void HandleGrip()
+    {
+        // 1. Vận tốc đi thẳng: Chiếu vector vận tốc hiện tại lên trục dọc của xe (transform.forward)
+        Vector3 forwardVelocity = transform.forward * Vector3.Dot(rb.linearVelocity, transform.forward);
+
+        // 2. Vận tốc trượt ngang: Chiếu vector vận tốc hiện tại lên trục ngang của xe (transform.right)
+        Vector3 rightVelocity = transform.right * Vector3.Dot(rb.linearVelocity, transform.right);
+
+        // 3. Tổng hợp lại vận tốc mới: Giữ nguyên đà đi thẳng, nhưng triệt tiêu đà trượt ngang dựa trên tireGrip
+        // Nếu tireGrip = 0.95, lực trượt ngang chỉ còn giữ lại 5% (1 - 0.95)
+        rb.linearVelocity = forwardVelocity + rightVelocity * (1f - tireGrip);
     }
 }
