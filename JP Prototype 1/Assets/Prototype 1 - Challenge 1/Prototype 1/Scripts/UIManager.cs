@@ -4,17 +4,17 @@ using TMPro; // Thư viện bắt buộc cho TextMeshPro
 public class UIManager : MonoBehaviour
 {
     [Header("Data Source")]
-    [SerializeField, Tooltip("Kéo object Car (chứa VehicleController) vào đây")]
+    [SerializeField, Tooltip("Reference to the VehicleController component on the Car object.")]
     private VehicleController vehicle;
 
     [Header("UI Elements")]
-    [SerializeField, Tooltip("Text hiển thị Tốc độ")]
+    [SerializeField, Tooltip("TextMeshPro component to display the current speed.")]
     private TextMeshProUGUI speedText;
 
-    [SerializeField, Tooltip("Text hiển thị Vòng tua máy")]
+    [SerializeField, Tooltip("TextMeshPro component to display the current engine RPM.")]
     private TextMeshProUGUI rpmText;
 
-    [SerializeField, Tooltip("Text hiển thị Cấp số")]
+    [SerializeField, Tooltip("TextMeshPro component to display the current gear.")]
     private TextMeshProUGUI gearText;
 
     void Update()
