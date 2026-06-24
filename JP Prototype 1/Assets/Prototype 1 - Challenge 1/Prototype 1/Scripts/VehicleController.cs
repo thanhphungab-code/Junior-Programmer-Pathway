@@ -27,6 +27,11 @@ public class VehicleController : MonoBehaviour
     private float brakeInput;
     private Rigidbody rb;
 
+    public float CurrentSpeed => currentSpeed;
+    public float CurrentRPM => currentRPM;
+    public int CurrentGear => currentGear;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
