@@ -243,6 +243,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 178130, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 87145206}
+    - targetCorrespondingSourceObject: {fileID: 178130, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 87145207}
   m_SourcePrefab: {fileID: 100100000, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
 --- !u!1 &87145195 stripped
 GameObject:
@@ -446,6 +449,24 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   tireGrip: 0.95
+--- !u!114 &87145207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87145195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed28d051d0d7b6418cad355b8947c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vehicle: {fileID: 87145206}
+  frontLeftWheel: {fileID: 1760080784}
+  frontRightWheel: {fileID: 1012932847}
+  rearLeftWheel: {fileID: 1474135970}
+  rearRightWheel: {fileID: 842252938}
+  wheelRadius: 0.3682489
 --- !u!1 &138512468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,6 +1508,11 @@ MonoBehaviour:
       m_Action: Toggle View
       m_Flags: 0
     m_Flags: 0
+--- !u!4 &842252938 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 431296, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
+  m_PrefabInstance: {fileID: 87145194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &889683895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,6 +1711,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1014797949310951927, guid: e7db4011ca7f11c408c1ad18b34ed04d, type: 3}
   m_PrefabInstance: {fileID: 974359749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1012932847 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 455660, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
+  m_PrefabInstance: {fileID: 87145194}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1048954061
 PrefabInstance:
@@ -1918,6 +1949,11 @@ Transform:
   - {fileID: 397784979}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1474135970 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400764, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
+  m_PrefabInstance: {fileID: 87145194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1496439181
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,6 +2126,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!4 &1760080784 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 446132, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
+  m_PrefabInstance: {fileID: 87145194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1835961609
 GameObject:
   m_ObjectHideFlags: 0
