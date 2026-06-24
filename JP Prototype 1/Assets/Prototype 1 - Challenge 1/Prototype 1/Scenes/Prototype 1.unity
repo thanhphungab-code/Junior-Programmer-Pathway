@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436868, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4176674
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 436868, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436868, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.9160595
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 436868, guid: 70bf34f6c25c948458f254e87188b00b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -207,7 +207,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87145195}
   serializedVersion: 4
-  m_Mass: 1500
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -238,13 +238,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 107e6cb555c87e74fbc0ea4a5707fdfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseForce: 100000
   currentSpeed: 0
   maxSteerAngleAtZero: 45
   maxSteerAngleAtMaxSpeed: 10
   steerTime: 1.5
   turnSensitivity: 2.5
   currentSteerAngle: 0
+  currentGear: 1
+  currentRPM: 0
+  maxRPM: 8000
+  gearMaxSpeeds:
+  - 50
+  - 90
+  - 140
+  - 180
+  gearAccelTimes:
+  - 3
+  - 4
+  - 8
+  - 15
   driveAction:
     m_Name: Drive
     m_Type: 0
@@ -745,7 +757,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397784978}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e491cb0a651474e49877da0c568ff7fa, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1085,6 +1097,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road
       objectReference: {fileID: 0}
+    - target: {fileID: 3598181040322394578, guid: e7db4011ca7f11c408c1ad18b34ed04d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: e491cb0a651474e49877da0c568ff7fa, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
