@@ -5,11 +5,11 @@ namespace Prototype2
 {
     public class PlayerController : MonoBehaviour
     {
-        private float horizontalInput;
-        private float speed = 20.0f;
-        private float xRange = 15;
-        public GameObject projectilePrefab;
 
+        [SerializeField] private float speed = 20.0f;
+        [SerializeField] private float xRange = 15;
+        [SerializeField] private GameObject projectilePrefab;
+        private float horizontalInput;
 
         // Update is called once per frame
         void Update()
@@ -43,8 +43,6 @@ namespace Prototype2
                     pooledProjectile.transform.position = transform.position; // position it at player
                 }
             }
-
-
 
         }
     }

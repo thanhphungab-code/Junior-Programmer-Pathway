@@ -22,6 +22,7 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private InputAction steerAction;
     [SerializeField] private InputAction brakeAction;
     [Range(0f, 1f)][SerializeField] private float tireGrip = 0.95f;
+    private float extraGravity = 30f;
     private float gasInput;
     private float steerInput;
     private float brakeInput;
@@ -63,14 +64,20 @@ public class VehicleController : MonoBehaviour
     void FixedUpdate()
     {
         currentSpeed = rb.linearVelocity.magnitude * 3.6f;
-
+        if (currentSpeed < 0.1f && Mathf.Abs(gasInput) < 0.05f)
+        {
+            currentSpeed = 0f;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
         HandleEngine();
         ApplyMotorForce();
         HandleDeceleration();
         HandleSteering();
-
         HandleGrip();
+        // ApplyExtraGravity();
     }
+
     private void HandleEngine()
     {
         currentRPM = maxRPM / gearMaxSpeeds[currentGear - 1] * currentSpeed;
@@ -96,11 +103,11 @@ public class VehicleController : MonoBehaviour
 
             float deltaSpeedMS = (maxSpeedKMH - minSpeedKMH) / 3.6f;
             float requiredAcceleration = deltaSpeedMS / gearAccelTimes[currentGear - 1];
+
             float speedProgressInGear = Mathf.InverseLerp(minSpeedKMH, maxSpeedKMH, currentSpeed);
-
             float torqueCurveMultiplier = Mathf.Lerp(1.3f, 0.3f, speedProgressInGear);
-            float finalAcceleration = requiredAcceleration * torqueCurveMultiplier;
 
+            float finalAcceleration = requiredAcceleration * torqueCurveMultiplier;
             Vector3 forceVector = transform.forward * gasInput * finalAcceleration;
             rb.AddForce(forceVector, ForceMode.Acceleration);
         }
@@ -156,5 +163,10 @@ public class VehicleController : MonoBehaviour
     {
         Vector3 rightVelocity = transform.right * Vector3.Dot(rb.linearVelocity, transform.right);
         rb.linearVelocity -= rightVelocity * tireGrip;
+    }
+
+    private void ApplyExtraGravity()
+    {
+        rb.AddForce(Vector3.down * extraGravity, ForceMode.Acceleration);
     }
 }

@@ -24,7 +24,7 @@ namespace JpPrototype4
         private int _activeEnemyCount;
         private bool _isWaveActive;
         private bool _allWavesCompleted;
-
+        private int _score;
         private void Start()
         {
             StartCoroutine(StartNextWave());
@@ -100,6 +100,7 @@ namespace JpPrototype4
         {
             source.OnReturnedToPool -= HandleEnemyReturned;
             _activeEnemyCount = Mathf.Max(0, _activeEnemyCount - 1);
+            _score += source.ScoreValue;
         }
 
         private Vector3 GenerateSpawnPosition()

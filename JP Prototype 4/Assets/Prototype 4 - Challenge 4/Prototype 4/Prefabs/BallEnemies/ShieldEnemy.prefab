@@ -105,6 +105,7 @@ MonoBehaviour:
   _timeToGetAbility: 5
   _fixedAbility: 4
   _outOfBoundsY: -10
+  _scoreValue: 15
 --- !u!114 &285898664925688775
 MonoBehaviour:
   m_ObjectHideFlags: 0

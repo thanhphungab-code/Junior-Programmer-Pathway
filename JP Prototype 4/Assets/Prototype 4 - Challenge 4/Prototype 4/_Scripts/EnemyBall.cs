@@ -14,14 +14,14 @@ namespace JpPrototype4
 
         [Tooltip("Y position below which the enemy is returned to pool.")]
         [SerializeField] private float _outOfBoundsY = -10f;
-
+        [SerializeField] private int _scoreValue = 10;
         public event Action<EnemyBall> OnReturnedToPool;
 
         private EntityAbilityManager _abilityManager;
         private PooledObject _pooledObject;
         private Transform _playerTarget;
         private float _abilityTimer;
-
+        public int ScoreValue => _scoreValue;
         protected override void Awake()
         {
             base.Awake();

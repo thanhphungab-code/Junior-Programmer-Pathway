@@ -5,8 +5,8 @@ namespace Prototype2
 {
     public class DestroyOutOfBounds : MonoBehaviour
     {
-        private float topBound = 30;
-        private float lowerBound = -10;
+        private float topBound = 40;
+        private float lowerBound = -15;
 
         // Start is called before the first frame update
         void Start()
@@ -19,16 +19,12 @@ namespace Prototype2
         {
             if (transform.position.z > topBound)
             {
-                // Instead of destroying the projectile when it leaves the screen
-                //Destroy(gameObject);
-
-                // Just deactivate it
                 gameObject.SetActive(false);
 
             }
             else if (transform.position.z < lowerBound)
             {
-                Debug.Log("Game Over!");
+                GameManager.Instance.GameOver();
                 Destroy(gameObject);
             }
 
