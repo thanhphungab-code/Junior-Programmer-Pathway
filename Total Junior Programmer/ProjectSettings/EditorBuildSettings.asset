@@ -5,37 +5,37 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/_Summary.unity
     guid: f67023d3674304e41abd74a9506db4a0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Challenge 1.unity
     guid: b6cc3e14dbc3342c8ab192babf679766
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Challenge 2.unity
     guid: f695fe0c51d8449d2b49648dad174255
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Challenge 3.unity
     guid: 8a1fabfaac7e04af29dc3664bfd4f100
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Challenge 4.unity
     guid: bafab91dee6434fbcb28a5a16e78982f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Challenge 5.unity
     guid: 2c85e4f6638394ea8b8154a3b832357b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototype 1.unity
     guid: 84729eeda748340d0955715b6a50b370
   - enabled: 1
     path: Assets/Scenes/Prototype 2.unity
     guid: f0196d95ff9244ffaa65879ba7824fd4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototype 3.unity
     guid: dc8c9f3efd746429fa6f9482dc779492
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototype 4.unity
     guid: a4b96ad7a65484fd4a83cb97540eee50
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototype 5.unity
     guid: cd8587828c4f74c4a9ab8bb8cf8c26fb
   m_configObjects:

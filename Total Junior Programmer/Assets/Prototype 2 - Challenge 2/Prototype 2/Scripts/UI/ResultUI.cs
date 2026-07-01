@@ -12,7 +12,7 @@ namespace Prototype2
         [SerializeField] private TextMeshProUGUI coinCountText;
         [SerializeField] private Button retryButton;
         [SerializeField] private Button closeButton;
-
+        
         private int score, animalCount, diamondCount, coinCount;
 
         private void Awake()
